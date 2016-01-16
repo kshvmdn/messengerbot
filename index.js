@@ -31,7 +31,8 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
     if (msg.match(/\/giphy (.+)/)) {
       var search = msg.replace("/giphy", "")
       giphy.search(search).then(function(res) {
-        api.sendMessage(res.data[0].embed_url, message.threadID)
+        var gif = res.data[Math.floor(Math.random() * res.data.length)].images.downsized.url;
+        api.sendMessage(gif, message.threadID)
       });
     }
   });
