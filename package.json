@@ -27,6 +27,7 @@
   "homepage": "https://github.com/kshvmdn/messengerbot#readme",
   "dependencies": {
     "facebook-chat-api": "^1.0.5",
-    "giphy-api": "^1.1.11"
+    "giphy-api": "^1.1.11",
+    "rapgenius": "0.0.2"
   }
 }
