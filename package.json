@@ -1,0 +1,31 @@
+{
+  "name": "messengerbot",
+  "version": "0.0.0",
+  "description": "Facebook Messenger bot for random commands.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "watch": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kshvmdn/messengerbot.git"
+  },
+  "keywords": [
+    "facebook",
+    "messenger",
+    "bot",
+    "kshvmdn",
+    "fun"
+  ],
+  "author": "Kashav Madan <kshvmdn@gmail.com> (kshvmdn.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kshvmdn/messengerbot/issues"
+  },
+  "homepage": "https://github.com/kshvmdn/messengerbot#readme",
+  "dependencies": {
+    "facebook-chat-api": "^1.0.5"
+  }
+}
