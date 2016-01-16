@@ -10,7 +10,7 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
   if (err) return console.error(err);
 
   api.listen(function callback(err, message) {
-    var msg = message.body.toLowerCase();
+    let msg = message.body.toLowerCase();
     api.markAsRead(message.threadID);
 
     if (msg.includes("/kick")) {
@@ -30,7 +30,7 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
       return stopListening();
     }
 
-    if (msg.match(/\/giphy (.+)/)) {
+    if (msg.includes("/giphy")) {
       var query = msg.replace("/giphy", "")
       giphy.search(query).then(function(res) {
         var gif = res.data[Math.floor(Math.random() * res.data.length)].images.downsized.url;
@@ -38,7 +38,7 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
       });
     }
 
-    if (msg.match(/\/rapgenius (.+)/)) {
+    if (msg.includes("/rapgenius")) {
       var query = msg.replace("/rapgenius", "")
       genius.search(query).then(function(res) {
         return res[0];
