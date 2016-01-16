@@ -2,9 +2,9 @@
 "use strict";
 
 const login = require("facebook-chat-api");
-const token = require('./fbid');
+const confg = require('./config');
 
-login({email: process.argv[2], password: process.argv[3]}, function callback(err, api) {
+login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
   if (err) return console.error(err);
 
   api.listen(function callback(err, message) {
@@ -12,17 +12,19 @@ login({email: process.argv[2], password: process.argv[3]}, function callback(err
 
     if (msg.includes("/kick")) {
       if (msg.includes("swar"))
-        api.removeUserFromGroup(token.SWAR, message.threadID);
+        api.removeUserFromGroup(confg.SWAR, message.threadID);
       else if (msg.includes("kaartikey"))
-        api.removeUserFromGroup(token.KAARTIKEY, message.threadID);
+        api.removeUserFromGroup(confg.KAARTIKEY, message.threadID);
       else if (msg.includes("anuj"))
-        api.removeUserFromGroup(token.ANUJ, message.threadID);
+        api.removeUserFromGroup(confg.ANUJ, message.threadID);
     }
 
     if (msg === "/say hi")
       api.sendMessage("Hello!", message.threadID);
 
-    if (msg === "/stop")
-      api.sendMessage("Goodbye!", message.threadID); return stopListening();
+    if (msg === "/stop") {
+      api.sendMessage("Goodbye!", message.threadID); 
+      return stopListening();
+    }
   });
 });

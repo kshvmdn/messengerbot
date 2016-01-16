@@ -33,5 +33,5 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# FB Msg IDS
-fbid.js
+# Config
+config.js
