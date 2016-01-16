@@ -31,19 +31,20 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
     }
 
     if (msg.match(/\/giphy (.+)/)) {
-      var search = msg.replace("/giphy", "")
-      giphy.search(search).then(function(res) {
+      var query = msg.replace("/giphy", "")
+      giphy.search(query).then(function(res) {
         var gif = res.data[Math.floor(Math.random() * res.data.length)].images.downsized.url;
         api.sendMessage(gif, message.threadID)
       });
     }
 
     if (msg.match(/\/rapgenius (.+)/)) {
-      var search = msg.replace("/rapgenius", "")
-      genius.search(search).then(function(res) {
+      var query = msg.replace("/rapgenius", "")
+      genius.search(query).then(function(res) {
         return res[0];
       }).then(function(song) {
-        api.sendMessage(song.url, message.threadID);
+        var url = song.url
+        api.sendMessage(url, message.threadID);
       });
     }
   });
