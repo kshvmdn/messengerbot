@@ -4,12 +4,14 @@
 const login = require("facebook-chat-api");
 const giphy = require("giphy-api")();
 const confg = require("./config");
+const genius = require("node-hackgenius");
 
 login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
   if (err) return console.error(err);
 
   api.listen(function callback(err, message) {
     var msg = message.body.toLowerCase();
+    api.markAsRead(message.threadID);
 
     if (msg.includes("/kick")) {
       if (msg.includes("swar"))
@@ -35,6 +37,14 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
         api.sendMessage(gif, message.threadID)
       });
     }
-    api.markAsRead(message.threadID);
+
+    if (msg.match(/\/rapgenius (.+)/)) {
+      var search = msg.replace("/rapgenius", "")
+      genius.search(search).then(function(res) {
+        return res[0];
+      }).then(function(song) {
+        api.sendMessage(song.url, message.threadID);
+      });
+    }
   });
 });

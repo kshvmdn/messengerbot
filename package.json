@@ -28,6 +28,6 @@
   "dependencies": {
     "facebook-chat-api": "^1.0.5",
     "giphy-api": "^1.1.11",
-    "rapgenius": "0.0.2"
+    "node-hackgenius": "^1.0.0"
   }
 }
