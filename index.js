@@ -35,5 +35,6 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
         api.sendMessage(gif, message.threadID)
       });
     }
+    api.markAsRead(message.threadID);
   });
 });
