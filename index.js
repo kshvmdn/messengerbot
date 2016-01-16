@@ -2,7 +2,8 @@
 "use strict";
 
 const login = require("facebook-chat-api");
-const confg = require('./config');
+const giphy = require("giphy-api")();
+const confg = require("./config");
 
 login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
   if (err) return console.error(err);
@@ -25,6 +26,13 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
     if (msg === "/stop") {
       api.sendMessage("Goodbye!", message.threadID); 
       return stopListening();
+    }
+
+    if (msg.match(/\/giphy (.+)/)) {
+      var search = msg.replace("/giphy", "")
+      giphy.search(search).then(function(res) {
+        api.sendMessage(res.data[0].embed_url, message.threadID)
+      });
     }
   });
 });
