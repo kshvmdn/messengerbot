@@ -11,28 +11,19 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
 
   api.listen(function callback(err, message) {
     let msg = message.body.toLowerCase();
-    api.markAsRead(message.threadID);
 
     if (msg.includes("/kick")) {
-      if (msg.includes("swar"))
-        api.removeUserFromGroup(confg.SWAR, message.threadID);
-      else if (msg.includes("kaartikey"))
-        api.removeUserFromGroup(confg.KAARTIKEY, message.threadID);
-      else if (msg.includes("anuj"))
-        api.removeUserFromGroup(confg.ANUJ, message.threadID);
+      var user = msg.replace("/kick ", "").toUpperCase();
+      api.removeUserFromGroup(confg[user], message.threadID);
     }
 
     if (msg.includes("/add")) {
-      if (msg.includes("swar"))
-        api.addUserToGroup(confg.SWAR, message.threadID);
-      else if (msg.includes("kaartikey"))
-        api.addUserToGroup(confg.KAARTIKEY, message.threadID);
-      else if (msg.includes("anuj"))
-        api.addUserToGroup(confg.ANUJ, message.threadID);
+      var user = msg.replace("/add ", "").toUpperCase();
+      api.addUserToGroup(confg[user], message.threadID);
     }
 
-    if (msg === "/say hi")
-      api.sendMessage("Hello!", message.threadID);
+    if (msg.includes("/say"))
+      api.sendMessage(msg.replace("/say ", ""), message.threadID);
 
     if (msg === "/stop") {
       api.sendMessage("Goodbye!", message.threadID); 
