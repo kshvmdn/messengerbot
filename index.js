@@ -14,24 +14,31 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
 
     if (msg.includes("/kick")) {
       var user = msg.replace("/kick ", "").toUpperCase();
-      api.removeUserFromGroup(confg[user], message.threadID);
+      if (confg[user] != undefined)
+        api.removeUserFromGroup(confg[user], message.threadID);
     }
 
     if (msg.includes("/add")) {
       var user = msg.replace("/add ", "").toUpperCase();
-      api.addUserToGroup(confg[user], message.threadID);
+      if (confg[user] != undefined)
+        api.addUserToGroup(confg[user], message.threadID);
     }
 
-    if (msg.includes("/say"))
-      api.sendMessage(msg.replace("/say ", ""), message.threadID);
+    if (msg === "/say hi") {
+      api.sendMessage("Hello, I\'m Kashav Bot!", message.threadID);
+    }
 
     if (msg === "/stop") {
       api.sendMessage("Goodbye!", message.threadID); 
       return stopListening();
     }
 
+    if (msg === ": )") {
+      api.sendMessage("( :", message.threadID);
+    }
+
     if (msg.includes("/giphy")) {
-      var query = msg.replace("/giphy", "")
+      var query = msg.replace("/giphy ", "")
       giphy.search(query).then(function(res) {
         var gif = res.data[Math.floor(Math.random() * res.data.length)].images.downsized.url;
         api.sendMessage(gif, message.threadID)
@@ -39,7 +46,7 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
     }
 
     if (msg.includes("/rapgenius")) {
-      var query = msg.replace("/rapgenius", "")
+      var query = msg.replace("/rapgenius ", "")
       genius.search(query).then(function(res) {
         return res[0];
       }).then(function(song) {
