@@ -9,7 +9,10 @@ const genius = require("node-hackgenius");
 login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
   if (err) return console.error(err);
 
-  api.listen(function callback(err, message) {
+  var stopListening = api.listen(function(err, event) {
+    return stopListening();
+  });
+  var listen = api.listen(function callback(err, message) {
     let msg = message.body.toLowerCase();
 
     if (msg.includes("/kick")) {
@@ -30,7 +33,7 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
 
     if (msg === "/stop") {
       api.sendMessage("Goodbye!", message.threadID); 
-      return stopListening();
+      stopListening();
     }
 
     if (msg === ": )") {
