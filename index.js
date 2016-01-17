@@ -22,6 +22,15 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
         api.removeUserFromGroup(confg.ANUJ, message.threadID);
     }
 
+    if (msg.includes("/add")) {
+      if (msg.includes("swar"))
+        api.addUserToGroup(confg.SWAR, message.threadID);
+      else if (msg.includes("kaartikey"))
+        api.addUserToGroup(confg.KAARTIKEY, message.threadID);
+      else if (msg.includes("anuj"))
+        api.addUserToGroup(confg.ANUJ, message.threadID);
+    }
+
     if (msg === "/say hi")
       api.sendMessage("Hello!", message.threadID);
 
