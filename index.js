@@ -5,6 +5,7 @@ const login = require("facebook-chat-api");
 const giphy = require("giphy-api")();
 const confg = require("./config");
 const genius = require("node-hackgenius");
+const request = require("request");
 
 login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
   if (err) return console.error(err);
@@ -38,6 +39,10 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
 
     if (msg === ": )") {
       api.sendMessage("( :", message.threadID);
+    }
+
+    if (msg.includes("/nba")) {
+      api.sendMessage("BALL IS LIFE", message.threadID);
     }
 
     if (msg.includes("/giphy")) {

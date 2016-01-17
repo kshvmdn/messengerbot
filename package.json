@@ -28,6 +28,7 @@
   "dependencies": {
     "facebook-chat-api": "^1.0.5",
     "giphy-api": "^1.1.11",
-    "node-hackgenius": "^1.0.0"
+    "node-hackgenius": "^1.0.0",
+    "request": "^2.67.0"
   }
 }
