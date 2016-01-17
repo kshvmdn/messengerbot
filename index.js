@@ -6,6 +6,7 @@ const giphy = require("giphy-api")();
 const confg = require("./config");
 const genius = require("node-hackgenius");
 const request = require("request");
+const define = require("define-it").definitions;
 
 login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
   if (err) return console.error(err);
@@ -43,8 +44,16 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
       api.sendMessage("BALL IS LIFE", message.threadID);
     }
 
+    if (msg.includes("/define")) {
+      var query = msg.replace("/define ", "");
+      define(query, function(err, res) {
+        if (err) api.sendMessage('Can\'t find definition', message.threadID);
+        if (!err) api.sendMessage(res[0], message.threadID);
+      });
+    }
+
     if (msg.includes("/giphy")) {
-      var query = msg.replace("/giphy ", "")
+      var query = msg.replace("/giphy ", "");
       giphy.search(query).then(function(res) {
         var gif = res.data[Math.floor(Math.random() * res.data.length)].images.downsized.url;
         api.sendMessage(gif, message.threadID)

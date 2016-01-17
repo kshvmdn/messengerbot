@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/kshvmdn/messengerbot#readme",
   "dependencies": {
+    "define-it": "0.0.1",
     "facebook-chat-api": "^1.0.5",
     "giphy-api": "^1.1.11",
     "node-hackgenius": "^1.0.0",
