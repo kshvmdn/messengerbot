@@ -10,10 +10,8 @@ const request = require("request");
 login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
   if (err) return console.error(err);
 
-  var stopListening = api.listen(function(err, event) {
-    return stopListening();
-  });
   var listen = api.listen(function callback(err, message) {
+    if (err) return console.error(err);
     let msg = message.body.toLowerCase();
 
     if (msg.includes("/kick")) {
@@ -34,7 +32,7 @@ login({email: confg.EMAIL, password: confg.PASS}, function callback(err, api) {
 
     if (msg === "/stop") {
       api.sendMessage("Goodbye!", message.threadID); 
-      stopListening();
+      return listen();
     }
 
     if (msg === ": )") {
