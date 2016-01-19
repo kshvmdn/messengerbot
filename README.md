@@ -1,5 +1,5 @@
 # MessengerBot
-Facebook Messenger bot for commands (and lols). Built with [facebook-chat-api](https://github.com/Schmavery/facebook-chat-api).
+Facebook Messenger bot for random commands (and lols _ofc_). Built with [facebook-chat-api](https://github.com/Schmavery/facebook-chat-api).
 
 #### Usage
 Clone repository, install dependencies.
