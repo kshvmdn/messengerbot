@@ -26,9 +26,10 @@ module_exports = {
 }
 ```
 
-Finding `FRIEND_MSG_ID`
 
-You can find these values in the XHR responses named `pull` (check network tab in devtools). You can also find them programtically by altering `index.js` with the following line and then running the program (and waiting for the _"target"_ to message).
+Either find `FRIEND_MSG_ID` by
++ manually parsing through the XHR responses (check `pull` in devtools) or 
++ adding the following line to `index.js`, then running the program and waiting for the _"target"_ to message (`FRIEND_MSG_ID` is `message.senderID`).
 ```javascript
 ...
 var listen = api.listen(function callback(err, message) {
@@ -36,7 +37,7 @@ var listen = api.listen(function callback(err, message) {
 ...
 ```
 
-Run the app; I'd recommend `nodemon` (especially for a project like this), but native `node` works fine too.
+Run the app.
 ```
 node index.js
 ```
@@ -44,4 +45,4 @@ node index.js
 The bot should be running. Add _it_ to your group chat and you're ready!
 
 #### Contribute
-Feel free to [make a pull request](https://github.com/kshvmdn/messengerbot/pulls) or [open an issue](https://github.com/kshvmdn/messengerbot/issues)!
+Feel free to [make a pull request](https://github.com/kshvmdn/messengerbot/pulls) or [open an issue](https://github.com/kshvmdn/messengerbot/issues)! All contributions are welcome.
