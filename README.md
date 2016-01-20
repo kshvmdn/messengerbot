@@ -4,16 +4,16 @@ Facebook Messenger bot for random commands (and lols _ofc_). Built with [faceboo
 #### Usage
 Clone repository, install dependencies.
 
-```
+```bash
 git clone github.com/kshvmdn/messengerbot && cd messengerbot
 ```
 
-```
+```bash
 npm install
 ```
 
 Configure account/friend msg IDs
-```
+```bash
 touch config.js
 ```
 Add the following to `config.js`.
@@ -28,8 +28,8 @@ module_exports = {
 
 
 Either find `FRIEND_MSG_ID` by
-+ manually parsing through the XHR responses (check `pull` in devtools) or 
-+ adding the following line to `index.js`, then running the program and waiting for the _"target"_ to message (`FRIEND_MSG_ID` is `message.senderID`).
++ manually parsing through the XHR responses (check the network tab in devtools) or 
++ adding the following line to `index.js`, then running the program and waiting for the _target_ to message (`FRIEND_MSG_ID` is `message.senderID`).
 ```javascript
 ...
 var listen = api.listen(function callback(err, message) {
@@ -38,7 +38,7 @@ var listen = api.listen(function callback(err, message) {
 ```
 
 Run the app.
-```
+```bash
 node index.js
 ```
 
